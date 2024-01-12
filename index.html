@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab10</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <script>
+        function clearC(){
+            console.clear();
+        } 
+        //1
+        function findNumInArray(arr, num){ 
+            var newNumsArr = [];
+            for(let i = 0; i < arr.length; i++){
+                if(arr[i] % num == 0)
+                    newNumsArr.push(arr[i]);
+            }
+            if(newNumsArr.length != 0)
+                alert(newNumsArr);
+            else   
+                alert('Нет таких элементов');    
+        }
+
+        function one(){
+            var myArray = [4, 16, 7, 9, 8, -4];
+            var num = prompt(`Введите число, а я найду числа в массиве ${myArray}, которые  делятся на заданное цисло: `);
+            findNumInArray(myArray, num);
+        }
+        //2
+        function isAnagram(str1, str2) {
+            str1 = str1.toLowerCase();
+            str2 = str2.toLowerCase();
+            str1 = str1.replaceAll(' ', '');
+            str2 = str2.replaceAll(' ', '');
+            
+            var sortedStr1 = str1.split('').sort().join('');
+            var sortedStr2 = str2.split('').sort().join('');
+
+            if (sortedStr1 == sortedStr2) {
+                alert("Строки являются анаграммами");
+            } else {
+                alert("Строки не являются анаграммами");
+            }
+        }
+        
+        function two(){
+            var str1 = prompt(`Проверка на анаграмму. Введите первую строку: `);
+            var str2 = prompt(`Проверка на анаграмму. Введите вторую строку: `);
+            isAnagram(str1, str2);
+        }
+        //3
+        function countVowels(str)
+        {
+            let count = 0;
+            let glasn = 'aeiou'
+            for (let i = 0; i < str.length; i++)
+                if (glasn.includes(str[i])) count++;
+            return count;
+        }
+
+        function three(){
+            var str = "Do they win?";
+            alert(`Количество гласных aeiou в строке ${str} = ` + countVowels(str));
+        }
+        //4
+        function writeGrid(){
+            var str = '#'; 
+            for(let i = 1; i <= 7; i++){
+                document.write(i + '.\t' + str + '<br>');
+                str += '#';
+            }
+        }
+        //5
+        function FizzOrBuzz() {
+            for (let i = 1; i <= 100; i++) {
+                if(i % 3 == 0)
+                {
+                    console.log('Fizz');
+                    continue;
+                }
+                else if (i % 5 == 0 && i % 3 != 0)
+                {
+                    console.log('Buzz');
+                    continue;
+                }
+                console.log(i);
+            }
+        }
+        function FizzBuzz() {
+            for (let i = 1; i <= 100; i++) {
+                if (i % 5 == 0 && i % 3 == 0)
+                {
+                    console.log('FuzzBuzz');
+                    continue;
+                }
+                console.log(i);
+            } 
+        }
+        //6
+        function createChessBoard() {
+            var chessBoard = '';
+            for(let i = 1; i <= 8; i++){
+                for(let j = 1; j <= 8; j++){
+                    if(i % 2 == 0){
+                        if(j % 2 == 0)
+                            chessBoard+='w'; 
+                        else    
+                            chessBoard+='b';
+                    } else {
+                        if(j % 2 == 0)
+                            chessBoard+='b';
+                        else    
+                            chessBoard+='w'; 
+                    }
+                }
+                chessBoard+='<br>';
+            }
+
+            document.write(chessBoard);
+        }
+        //7
+        function min(a,b){
+            if(a<b)
+                return a;
+            else
+                return b;
+        }
+
+        function seven(){
+            var a = prompt('Введите два числа, я выведу минимальное из них\n\nПервое число: ');
+            var b = prompt('Введите два числа, я выведу минимальное из них\n\nВторое число: ');
+            alert(`Из двух чисел ${a} и ${b}, минимальное ${min(a,b)}`);
+            //alert(min(-2,-5));
+        }
+        //8
+        function isEven(n){
+            if(n == 0) return true;
+            if(n == 1) return false;
+            if(n < 0) return false;
+            return isEven(n-2);
+        }
+
+        function eight(){
+            alert("Четное ли число 50?\n" + isEven(50));
+            alert("Четное ли число 75?\n" + isEven(75));
+            console.log("Четное ли число -1?\n" + isEven(-1));
+        }
+        //9
+        function countBs(str){
+            var count = 0;
+            for (let i = 0; i <= str.length; i++)
+            {
+                if (str[i] == 'B') 
+                    count++;
+            }
+            return count;
+        }
+        function countChar(str,symbol)
+        {
+            var count = 0;
+            for (let i = 0; i <= str.length; i++)
+            {
+                if (str[i] == symbol) 
+                    count++;
+            }
+            return count;
+        }
+        function nine(){
+            var str = 'BIG RUSSIAN BOSS';
+            alert(`Количество символов B в строке ${str} = ${countBs(str)}`);
+
+            var str2 = 'BIG RUSSIAN BOSS';
+            var symbol = 'S';
+            alert(`Количество символов ${symbol} в строке ${str} = ${countChar(str2, symbol)}`);
+        }
+
+        //10
+        function range(beginning, end, step = 1)
+        {
+            let resultArr = [];
+            let count = 0;
+            if (step < 0)
+            {
+                beginning *= -1;
+                end *= -1;
+                step *= -1;
+            }
+            for(let i = beginning; i <= end; i += step)
+            {
+                resultArr[count] = Math.abs(i);
+                count++;
+            }
+            return resultArr;          
+        }
+        function sum(arr)
+        {
+            let sumOfNums = 0;
+            for(let i = 0; i < arr.length; i++)
+            {
+                sumOfNums += arr[i];
+            }
+            return sumOfNums;
+        }
+        
+        function ten(){
+            myArray = range(5, 2, -1);
+            for(let i = 0; i < myArray.length; i++)
+            {
+                console.log(myArray[i]);
+            }
+            console.log("Сумма чисел массива: " + sum(myArray));
+        }
+        //11
+        function reverseArray(arr){
+            let res = [];
+            for(let i = 0; i < arr.length; i++)
+                res[i] = arr[arr.length - 1 - i];
+            
+            return res;
+        }
+        function reverseArrayInPlace(arr)
+        {
+            for(let i = 0; i < arr.length; i++)
+                arr[i] = arr[arr.length - 1 - i];
+            return;
+        }
+        function printArray(arr)
+        {
+            let myArray = "";
+            for(let i = 0; i < arr.length; i++)
+            {
+                 myArray += arr[i] + " ";
+            }
+            console.log(myArray);
+        }
+
+        function eleven(){
+            var myArray = [1,2,3,4,5];
+            console.log("Исходный массив: ");
+            printArray(myArray);
+
+            var newArray = reverseArray(myArray);
+            console.log("Новый массив после reverseArray: ");
+            printArray(newArray);
+
+            reverseArrayInPlace(myArray);
+            console.log("Исходный массив после reverseArrayInPlace: ");
+            printArray(myArray);
+        }
+        //12
+        function deepEqual(value1, value2) {
+            if(typeof(value1) != 'object' && typeof(value2) != 'object') 
+                return value1 === value2;
+            if(value1 == null && value2 == null) 
+                return true;
+            if(value1 == null || value2 == null) 
+                return false;
+
+            let keys1 = Object.keys(value1);
+            let keys2 = Object.keys(value2);
+            
+            if(keys1.length != keys2.length) 
+                return false;
+
+            for(key of keys1)
+                if(!keys2.includes(key) || !deepEqual(value1[key], value2[key])) 
+                    return false;
+            
+            return true;
+        }
+
+        function twelve(){
+            console.log(deepEqual(1, 1)); // true
+            console.log(deepEqual(1, 2)); // false
+            console.log(deepEqual('yes', 'yes')); // true
+            console.log(deepEqual('yes', 'no')); // false
+            console.log(deepEqual({ a: 1, b: 2 }, { a: 1, b: 2 })); // true
+            console.log(deepEqual({ a: 1, b: 2 }, { a: 1, b: 3 })); // false
+            console.log(deepEqual(null, null)); // true
+        }
+        //13
+        function thirteen(){
+            const arrays = [
+                [1, 2, 3], 
+                [4, 5], 
+                [6]
+            ];
+
+            const collapsedArray = arrays.reduce((accumulator, currentArray) => {
+                return accumulator.concat(currentArray);
+            }, []);
+
+            console.log(collapsedArray);
+        }
+    </script>
+    <p><button onclick="clearC()"><b>Очистить консоль</b></button></p>
+    <button onclick="one()">Задание 1</button>
+    <button onclick="two()">Задание 2</button>
+    <button onclick="three()">Задание 3</button>    
+    <button onclick="writeGrid()">Задание 4</button>
+    <button onclick="FizzBuzz()">Задание 5</button>
+    <button onclick="createChessBoard()">Задание 6</button>
+    <button onclick="seven()">Задание 7</button>
+    <button onclick="eight()">Задание 8</button>
+    <button onclick="nine()">Задание 9</button>
+    <button onclick="ten()">Задание 10</button>
+    <button onclick="eleven()">Задание 11</button>
+    <button onclick="twelve()">Задание 12</button>
+    <button onclick="thirteen()">Задание 13</button>
+</body>
+</html>
